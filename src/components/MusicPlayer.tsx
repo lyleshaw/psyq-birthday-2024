@@ -18,7 +18,7 @@ const songs: Song[] = [
     id: 1,
     title: "Song 1",
     artist: "Artist 1",
-    audioUrl: "/path-to-song1.mp3", // Replace with actual audio URL
+    audioUrl: "https://psyqimg.uuo.app/%E9%9B%A8%E5%A4%9C%E7%9A%84%E5%AE%88%E5%80%99.mp3", // Replace with actual audio URL
     lyrics: [
       "Verse 1 line 1",
       "Verse 1 line 2",
@@ -31,7 +31,7 @@ const songs: Song[] = [
     id: 2,
     title: "Song 2",
     artist: "Artist 2",
-    audioUrl: "/path-to-song2.mp3", // Replace with actual audio URL
+    audioUrl: "https://psyqimg.uuo.app/%E9%9B%A8%E5%A4%9C%E7%9A%84%E5%AE%88%E5%80%99.mp3", // Replace with actual audio URL
     lyrics: [
       "Different verse 1",
       "Different verse 2",
