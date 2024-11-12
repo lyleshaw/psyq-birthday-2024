@@ -38,7 +38,7 @@ export const ImageGenerator = () => {
         'https://replicate-taoxi-proxy.lyle.workers.dev/',
         { prompt },
         {
-          timeout: 15000, // 设置请求超时时间为15秒
+          timeout: 150000, // 设置请求超时时间为15秒
           onDownloadProgress: (progressEvent) => {
             if (progressEvent.total) {
               const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
