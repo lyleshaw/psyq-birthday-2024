@@ -9,21 +9,21 @@ type ImageExample = {
 }
 
 export const ImageGenerator = () => {
-  const [currentImage, setCurrentImage] = useState<string | null>(null);
+  const [currentImage, setCurrentImage] = useState<string | null>("https://replicate.delivery/xezq/SnnR0zXNsrI8Epkpn7yotxkkG7LVOcuAgl77etxqdVEkV73JA/out-0.webp");
   const [prompt, setPrompt] = useState('');
 
   const examples: ImageExample[] = [
     {
       prompt: "A photo of TAOXI feeding cats",
-      imageUrl: "/example1.jpg" // Replace with your actual image URLs
+      imageUrl: "https://replicate.delivery/xezq/SnnR0zXNsrI8Epkpn7yotxkkG7LVOcuAgl77etxqdVEkV73JA/out-0.webp" // Replace with your actual image URLs
     },
     {
       prompt: "A photo of TAOXI playing guitar",
-      imageUrl: "/example2.jpg"
+      imageUrl: "https://replicate.delivery/xezq/SnnR0zXNsrI8Epkpn7yotxkkG7LVOcuAgl77etxqdVEkV73JA/out-0.webp"
     },
     {
       prompt: "A photo of TAOXI reading books",
-      imageUrl: "/example3.jpg"
+      imageUrl: "https://replicate.delivery/xezq/SnnR0zXNsrI8Epkpn7yotxkkG7LVOcuAgl77etxqdVEkV73JA/out-0.webp"
     }
   ];
 
