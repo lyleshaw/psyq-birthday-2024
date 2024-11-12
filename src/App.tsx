@@ -1,27 +1,34 @@
-import CountBtn from "@/components/count-btn";
-import ReactSVG from "@/assets/react.svg";
-import { Badge } from "@/components/ui/badge";
+import React from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ImageGenerator } from './components/ImageGenerator';
+import { MusicPlayer } from './components/MusicPlayer';
+import { ThemeProvider } from './components/ThemeProvider';
+import { ThemeToggle } from './components/ThemeToggle';
 
-function App() {
+const App = () => {
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
-      <div className="flex flex-col items-center gap-y-4">
-        <div className="inline-flex items-center gap-x-4">
-          <img src={ReactSVG} alt="React Logo" className="w-32" />
-          <span className="text-6xl">+</span>
-          <img src={"/vite.svg"} alt="Vite Logo" className="w-32" />
+    <ThemeProvider defaultTheme="dark">
+      <div className="min-h-screen bg-background transition-colors">
+        <div className="max-w-4xl mx-auto p-4">
+          <div className="flex justify-end mb-4">
+            <ThemeToggle />
+          </div>
+          <Tabs defaultValue="image" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="image">图生成</TabsTrigger>
+              <TabsTrigger value="music">音乐</TabsTrigger>
+            </TabsList>
+            <TabsContent value="image">
+              <ImageGenerator />
+            </TabsContent>
+            <TabsContent value="music">
+              <MusicPlayer />
+            </TabsContent>
+          </Tabs>
         </div>
-        <a
-          href="https://ui.shadcn.com"
-          rel="noopener noreferrer nofollow"
-          target="_blank"
-        >
-          <Badge variant="outline">shadcn/ui</Badge>
-        </a>
-        <CountBtn />
       </div>
-    </main>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
