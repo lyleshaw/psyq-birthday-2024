@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { Progress } from '@/components/ui/progress';
+import axios from 'axios';
 
 type ImageExample = {
   prompt: string;
@@ -9,27 +11,57 @@ type ImageExample = {
 }
 
 export const ImageGenerator = () => {
-  const [currentImage, setCurrentImage] = useState<string | null>("https://replicate.delivery/xezq/SnnR0zXNsrI8Epkpn7yotxkkG7LVOcuAgl77etxqdVEkV73JA/out-0.webp");
+  const [currentImage, setCurrentImage] = useState<string | null>(null);
   const [prompt, setPrompt] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const examples: ImageExample[] = [
-    {
-      prompt: "A photo of TAOXI feeding cats",
-      imageUrl: "https://replicate.delivery/xezq/SnnR0zXNsrI8Epkpn7yotxkkG7LVOcuAgl77etxqdVEkV73JA/out-0.webp" // Replace with your actual image URLs
-    },
-    {
-      prompt: "A photo of TAOXI playing guitar",
-      imageUrl: "https://replicate.delivery/xezq/SnnR0zXNsrI8Epkpn7yotxkkG7LVOcuAgl77etxqdVEkV73JA/out-0.webp"
-    },
-    {
-      prompt: "A photo of TAOXI reading books",
-      imageUrl: "https://replicate.delivery/xezq/SnnR0zXNsrI8Epkpn7yotxkkG7LVOcuAgl77etxqdVEkV73JA/out-0.webp"
-    }
+    { prompt: "A photo of TAOXI feeding cats", imageUrl: "https://replicate.delivery/xezq/SnnR0zXNsrI8Epkpn7yotxkkG7LVOcuAgl77etxqdVEkV73JA/out-0.webp" },
+    { prompt: "A photo of TAOXI playing guitar", imageUrl: "https://replicate.delivery/xezq/SnnR0zXNsrI8Epkpn7yotxkkG7LVOcuAgl77etxqdVEkV73JA/out-0.webp" },
+    { prompt: "A photo of TAOXI reading books", imageUrl: "https://replicate.delivery/xezq/SnnR0zXNsrI8Epkpn7yotxkkG7LVOcuAgl77etxqdVEkV73JA/out-0.webp" }
   ];
 
   const handleExampleClick = (example: ImageExample) => {
     setPrompt(example.prompt);
     setCurrentImage(example.imageUrl);
+  };
+
+  const handleGenerateClick = async () => {
+    if (!prompt) return;
+
+    setLoading(true);
+    setProgress(10); // 初始加载进度
+
+    try {
+      const response = await axios.post(
+        'https://replicate-taoxi-proxy.lyle.workers.dev/',
+        { prompt },
+        {
+          timeout: 15000, // 设置请求超时时间为15秒
+          onDownloadProgress: (progressEvent) => {
+            if (progressEvent.total) {
+              const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+              setProgress(percentCompleted);
+            }
+          }
+        }
+      );
+
+      if (response.data && response.data.output) {
+        setCurrentImage(response.data.output[0]);
+      } else {
+        console.error("No output found in response");
+      }
+      
+      setProgress(100); // 请求完成后设置进度为100%
+
+    } catch (error) {
+      console.error("Error generating image:", error);
+      setProgress(0);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,7 +78,9 @@ export const ImageGenerator = () => {
             <p className="text-muted-foreground">Generated image will appear here</p>
           )}
         </div>
-        
+
+        {loading && <Progress value={progress} className="mt-2" />} {/* 显示进度条 */}
+
         <div className="space-y-2 mt-4">
           <Textarea 
             value={prompt}
@@ -54,7 +88,9 @@ export const ImageGenerator = () => {
             placeholder="请使用纯英语进行描述，描述以 A xxx of TAOXI 开头" 
             className="min-h-[100px] bg-background"
           />
-          <Button className="w-full">Generate</Button>
+          <Button className="w-full" onClick={handleGenerateClick} disabled={loading}>
+            {loading ? "Generating..." : "Generate"}
+          </Button>
         </div>
 
         <div className="grid grid-cols-3 gap-2 mt-4">
