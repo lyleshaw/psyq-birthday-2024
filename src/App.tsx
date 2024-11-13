@@ -1,7 +1,6 @@
-import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ImageGenerator } from './components/ImageGenerator';
-import { MusicPlayer } from './components/MusicPlayer';
+import { VideoPlayer } from './components/VideoPlayer';
 import { ThemeProvider } from './components/ThemeProvider';
 import { ThemeToggle } from './components/ThemeToggle';
 
@@ -22,7 +21,7 @@ const App = () => {
               <ImageGenerator />
             </TabsContent>
             <TabsContent value="music">
-              <MusicPlayer />
+              <VideoPlayer />
             </TabsContent>
           </Tabs>
         </div>
