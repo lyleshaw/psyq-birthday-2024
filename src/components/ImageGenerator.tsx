@@ -16,12 +16,12 @@ export const ImageGenerator = () => {
   const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([]); // Store all uploaded images
 
   const examples: ImageExample[] = [
-    { prompt: "A mysterious depiction of TAOXI under a full moon standing on mars with a grand planet in the background, wearing a formal blue shirt and gray vest and feeding cats", imageUrl: "https://psyqimg.uuo.app/1.webp" },
-    { prompt: "A melancholic moment of TAOXI, crouching in the rain while feeding a stray kitten, wearing a light vest over a blue shirt, a solemn expression, holding an open umbrella beside him, urban alleyway background, gentle rain effects, emotional anime art style. HDR, High Qulity.", imageUrl: "https://psyqimg.uuo.app/2.webp" },
-    { prompt: "A dramatic confrontation of TAOXI, in a hooded cloak with sharp daggers in hand, standing tall in a threatening pose, a girl cowering in fear behind him, glowing red eyes from shadows, dark night sky with heavy clouds, intense anime action scene.", imageUrl: "https://psyqimg.uuo.app/3.webp" },
-    { prompt: "A mysterious depiction of TAOXI under a full moon, with blue-black hair and piercing eyes, holding a mask in one hand, wearing a dark coat and high collar, a solemn and enigmatic expression, illuminated by soft moonlight, starry night sky, dramatic anime art style.", imageUrl: "https://psyqimg.uuo.app/4.webp" },
-    { prompt: "A portrait of TAOXI with short blue hair reflecting vibrant highlights, wearing a soft white sweater layered over a collared shirt, a calm and confident smile, delicate hand gestures, clean white background, anime art style, soft lighting, gentle details in expression.", imageUrl: "https://psyqimg.uuo.app/5.webp" },
-    { prompt: "A melancholic moment of TAOXI, crouching in the rain while feeding a stray kitten, wearing a light vest over a blue shirt, a solemn expression, holding a sword to defeat the monsters, gentle rain effects, emotional anime art style. HDR, High Qulity.", imageUrl: "https://psyqimg.uuo.app/6.webp" }
+    { prompt: "A mysterious depiction of TAOXI under a full moon standing on mars with a grand planet in the background, wearing a formal blue shirt and gray vest and feeding cats", imageUrl: "https://psyqimg.talecraft.site/1.webp" },
+    { prompt: "A melancholic moment of TAOXI, crouching in the rain while feeding a stray kitten, wearing a light vest over a blue shirt, a solemn expression, holding an open umbrella beside him, urban alleyway background, gentle rain effects, emotional anime art style. HDR, High Qulity.", imageUrl: "https://psyqimg.talecraft.site/2.webp" },
+    { prompt: "A dramatic confrontation of TAOXI, in a hooded cloak with sharp daggers in hand, standing tall in a threatening pose, a girl cowering in fear behind him, glowing red eyes from shadows, dark night sky with heavy clouds, intense anime action scene.", imageUrl: "https://psyqimg.talecraft.site/3.webp" },
+    { prompt: "A mysterious depiction of TAOXI under a full moon, with blue-black hair and piercing eyes, holding a mask in one hand, wearing a dark coat and high collar, a solemn and enigmatic expression, illuminated by soft moonlight, starry night sky, dramatic anime art style.", imageUrl: "https://psyqimg.talecraft.site/4.webp" },
+    { prompt: "A portrait of TAOXI with short blue hair reflecting vibrant highlights, wearing a soft white sweater layered over a collared shirt, a calm and confident smile, delicate hand gestures, clean white background, anime art style, soft lighting, gentle details in expression.", imageUrl: "https://psyqimg.talecraft.site/5.webp" },
+    { prompt: "A melancholic moment of TAOXI, crouching in the rain while feeding a stray kitten, wearing a light vest over a blue shirt, a solemn expression, holding a sword to defeat the monsters, gentle rain effects, emotional anime art style. HDR, High Qulity.", imageUrl: "https://psyqimg.talecraft.site/6.webp" }
   ];
 
   // Fetch uploaded images on component mount
@@ -31,7 +31,7 @@ export const ImageGenerator = () => {
 
   const fetchUploadedImages = async () => {
     try {
-      const response = await axios.get('https://psyq-api.uuo.app/list-images');
+      const response = await axios.get('https://psyq-api.talecraft.site/list-images');
       setUploadedImages(response.data); // Set the list of uploaded images
     } catch (error) {
       console.error("Error fetching uploaded images:", error);
@@ -51,7 +51,7 @@ export const ImageGenerator = () => {
 
     try {
       const response = await axios.post(
-        'https://psyq-api.uuo.app/',
+        'https://psyq-api.talecraft.site/',
         { prompt },
         {
           timeout: 150000,
@@ -87,7 +87,7 @@ export const ImageGenerator = () => {
   const uploadGeneratedImage = async (imageUrl: string) => {
     try {
       // Prepare URL with imageUrl as query parameter
-      const url = new URL('https://psyq-api.uuo.app/upload-image');
+      const url = new URL('https://psyq-api.talecraft.site/upload-image');
       url.searchParams.append('img_url', imageUrl);  // Add image URL as query parameter
       url.searchParams.append('prompt', prompt);  // Add image URL as query parameter
 

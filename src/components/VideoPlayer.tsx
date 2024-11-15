@@ -14,17 +14,17 @@ const videoList: Video[] = [
   {
     id: 1,
     title: "面具之下",
-    videoUrl: "https://psyqimg.uuo.app/mjzx.mp4",
+    videoUrl: "https://psyqimg.talecraft.site/mjzx.mp4",
   },
   {
     id: 2,
     title: "救赎之路",
-    videoUrl: "https://psyqimg.uuo.app/jszl.mp4",
+    videoUrl: "https://psyqimg.talecraft.site/jszl.mp4",
   },
   {
     id: 3,
     title: "永远的守护",
-    videoUrl: "https://psyqimg.uuo.app/yydsh.mp4",
+    videoUrl: "https://psyqimg.talecraft.site/yydsh.mp4",
   },
 ];
 
